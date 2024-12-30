@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/users")
 public class UserResource {
 
-    @GetMapping // Indicar que esse método que responde uma requisição do tipo get do http
+    @GetMapping // Indicar que esse metodo que responde uma requisição do tipo get do http
     public ResponseEntity<User> findAll() {
         User u = new User(1L, "Maria", "maria@gmail.com", "9999999", "12345");
         return ResponseEntity.ok().body(u);

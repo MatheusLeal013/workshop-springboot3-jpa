@@ -1,11 +1,17 @@
 package com.educandoweb.course.entities;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_user") // Palavra user é uma palavra reservada do BD H2 - importante renomeação para não dar conflito
 public class User implements Serializable {
     private static final long serialVersionUID = 2830112288781743815L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Dizer para o JPA que será auto incrementada no BD
     private Long id;
     private String name;
     private String email;
