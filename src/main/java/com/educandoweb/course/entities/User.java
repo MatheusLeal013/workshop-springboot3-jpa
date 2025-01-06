@@ -1,5 +1,6 @@
 package com.educandoweb.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.Objects;
 public class User implements Serializable {
     private static final long serialVersionUID = 2830112288781743815L;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Dizer para o JPA que será auto incrementada no BD
     private Long id;
@@ -20,6 +22,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client") // mapeado pelo atributo client
     private List<Order> orders = new ArrayList<>();
 

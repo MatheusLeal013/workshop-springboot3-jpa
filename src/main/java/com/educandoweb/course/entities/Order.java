@@ -1,5 +1,7 @@
 package com.educandoweb.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -14,6 +16,8 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT") // Formatar JSON
     private Instant moment;
 
     @ManyToOne // Implementar o relacionamento entre pedido e cliente para o JPA transformar em chaves estrangeiras no JPA - associação muitos para 1
@@ -23,9 +27,9 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Instant moment, Long id, User client) {
-        this.moment = moment;
+    public Order(Long id, Instant moment, User client) {
         this.id = id;
+        this.moment = moment;
         this.client = client;
     }
 
